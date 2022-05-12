@@ -10,7 +10,7 @@ void outputVectorElements(vector<int> arr) {
 	}
 }
 
-vector<int> getArrayWithRandomNumbers(int length)
+vector<int> getVectorWithRandomNumbers(int length)
 {
     vector<int> numbers(length);
 
@@ -22,34 +22,46 @@ vector<int> getArrayWithRandomNumbers(int length)
     return numbers;
 }
 
-vector<int> filterArray(vector<int> arr) {
+vector<int> filterVector(vector<int> arr) {
 	vector<int> filtered;
 
 
-	copy_if(arr.begin(), arr.end(), back_inserter(filtered), [](int number) -> bool {
+	copy_if(arr.begin(), arr.end(), back_inserter(filtered), [&](int& number) -> bool {
+		size_t index = &number - &arr[0];
+
 		return number % 4 == 0;
 	});
 
 	return filtered;
 }
 
-vector<int> mapVectorAndAddZeroAfterNumber(vector<int> arr) {}
+vector<int> addZeroToVector(vector<int> arr) {
+	vector<int> r;
+
+	for(int i = 0; i < arr.size(); i++) {
+		r.push_back(arr[i]);
+
+		if(i == 0 || i % 2 == 1) {
+			r.push_back(0);
+		}
+	}
+
+	return r;
+}
+
 
 int main() {
-	const int LENGTH = 100;
+	const int LENGTH = 10;
 
-	vector<int> numbers = getArrayWithRandomNumbers(LENGTH);
+	vector<int> numbers = getVectorWithRandomNumbers(LENGTH);
 
-	// outputVectorElements(numbers);
+	outputVectorElements(numbers);
 
-	vector<int> filteredNumbers = filterArray(numbers);
+	vector<int> filteredNumbers = filterVector(numbers);
 
 	outputVectorElements(filteredNumbers);
 
-	vector<int> transformed;
+	vector<int> numbersWithZeros = addZeroToVector(filteredNumbers);
 
-
-	transform(filteredNumbers.begin(), filteredNumbers.end(), back_inserter(transformed), [](int number) {
-		return number + 1;
-	});
+	outputVectorElements(numbersWithZeros);
 }
