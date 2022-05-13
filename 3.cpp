@@ -6,7 +6,7 @@ using namespace std;
 
 void outputVectorElements(vector<int> arr) {
 	for(int i = 0; i < arr.size(); i++) {
-		cout << arr[i];
+		cout << "Element: " << arr[i] << "\t" << endl;
 	}
 }
 
@@ -26,8 +26,7 @@ vector<int> filterVector(vector<int> arr) {
 	vector<int> filtered;
 
 
-	copy_if(arr.begin(), arr.end(), back_inserter(filtered), [&](int& number) -> bool {
-		size_t index = &number - &arr[0];
+	copy_if(arr.begin(), arr.end(), back_inserter(filtered), [](int number) -> bool {
 
 		return number % 4 == 0;
 	});
@@ -49,19 +48,23 @@ vector<int> addZeroToVector(vector<int> arr) {
 	return r;
 }
 
+void logDivider() {
+	cout << "================" << endl;
+}
+
 
 int main() {
 	const int LENGTH = 10;
 
 	vector<int> numbers = getVectorWithRandomNumbers(LENGTH);
-
 	outputVectorElements(numbers);
+	logDivider();
 
 	vector<int> filteredNumbers = filterVector(numbers);
-
 	outputVectorElements(filteredNumbers);
+	logDivider();
 
 	vector<int> numbersWithZeros = addZeroToVector(filteredNumbers);
-
 	outputVectorElements(numbersWithZeros);
+	logDivider();
 }
