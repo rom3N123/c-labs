@@ -25,7 +25,7 @@ int** createDeepArray(int rows, int cols) {
 	return arr;
 }
 
-int** filterDeepArray(int **arr, int rows, int cols) {
+tuple<int**, int> filterDeepArray(int **arr, int rows, int cols) {
 	int **newArr = new int*;
 	int resultCols = 0;
 
@@ -39,7 +39,7 @@ int** filterDeepArray(int **arr, int rows, int cols) {
 			}
 		}
 
-		resultCols = rowLength;
+		resultCols = rowLength + 1;
 	}
 
 	for(int i = 0; i < rows; i++) {
@@ -49,7 +49,7 @@ int** filterDeepArray(int **arr, int rows, int cols) {
 		cout << endl;
 	}
 
-	return newArr;
+	return { newArr , resultCols};
 }
 
 tuple<int*, int> filterArray(int arr[], int length) {
@@ -86,7 +86,7 @@ int main() {
 
 	// logArray(resultArr, resultArrLength);
 	int **arr = createDeepArray(5, 5);
-	int **filtered = filterDeepArray(arr, 5, 5);
+	auto result = filterDeepArray(arr, 5, 5);
 
 	// for(int i = 0; i < 5; i++) {
 	// 	cout << filtered[0][i] << endl;
