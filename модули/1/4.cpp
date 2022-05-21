@@ -25,7 +25,8 @@ class Area {
 		}
 
 		bool isInArea(int x, int y) {
-			return  this->isNumberInRange(this->_area.x, x) && 					   this->isNumberInRange(this->_area.y, y);
+			return  this->isNumberInRange(this->_area.x, x) && 					   
+			this->isNumberInRange(this->_area.y, y);
 		}
 	private:
 		area _area;

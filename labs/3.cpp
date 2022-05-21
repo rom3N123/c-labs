@@ -4,67 +4,75 @@
 
 using namespace std;
 
-void outputVectorElements(vector<int> arr) {
-	for(int i = 0; i < arr.size(); i++) {
-		cout << "Element: " << arr[i] << "\t" << endl;
-	}
-}
+class Vector {
+	public: 
+		vector<int> list;
 
-vector<int> getVectorWithRandomNumbers(int length)
-{
-    vector<int> numbers(length);
-
-	for(int i = 0; i < length; i++) {
-		int randomNumber = rand() % 100;
-		numbers[i] = randomNumber;
-	}
- 
-    return numbers;
-}
-
-vector<int> filterVector(vector<int> arr) {
-	vector<int> filtered;
-
-
-	copy_if(arr.begin(), arr.end(), back_inserter(filtered), [](int number) -> bool {
-
-		return number % 4 == 0;
-	});
-
-	return filtered;
-}
-
-vector<int> addZeroToVector(vector<int> arr) {
-	vector<int> r;
-
-	for(int i = 0; i < arr.size(); i++) {
-		r.push_back(arr[i]);
-
-		if(i == 0 || i % 2 == 1) {
-			r.push_back(0);
+		Vector(int length) 
+		{
+			this->create(length);
 		}
-	}
 
-	return r;
-}
+		void filter() 
+		{
+			vector<int> filtered;
 
-void logDivider() {
-	cout << "================" << endl;
-}
+			copy_if(this->list.begin(), this->list.end(), back_inserter(filtered), [](int number) -> bool {
+				return number % 4 != 0;
+			});
 
+			this->list = filtered;
+		}
+
+		void addZero() 
+		{
+			vector<int> transformed;
+
+			for(int i = 0; i < this->list.size(); i++) {
+				transformed.push_back(this->list[i]);
+
+				if(i == 0 || i % 2 == 1) {
+					transformed.push_back(0);
+				}
+			}
+
+			this->list = transformed;
+		}
+
+		void log()
+		{
+			for(int i = 0; i < this->list.size(); i++) {
+				cout << "Element: " << this->list[i] << "\t" << endl;
+			}
+
+			this->logDivider();
+		}
+
+	private:
+		int initialLength;
+
+		void logDivider() {
+			cout << "================" << endl;
+		}
+
+		void create(int length) 
+		{
+    		vector<int> numbers(length);
+
+			for(int i = 0; i < length; i++) {
+				int randomNumber = rand() % 11;
+				numbers[i] = randomNumber;
+			}
+
+			this->list = numbers;
+		}
+};
 
 int main() {
-	const int LENGTH = 10;
-
-	vector<int> numbers = getVectorWithRandomNumbers(LENGTH);
-	outputVectorElements(numbers);
-	logDivider();
-
-	vector<int> filteredNumbers = filterVector(numbers);
-	outputVectorElements(filteredNumbers);
-	logDivider();
-
-	vector<int> numbersWithZeros = addZeroToVector(filteredNumbers);
-	outputVectorElements(numbersWithZeros);
-	logDivider();
+	Vector v(10);
+	v.log();
+	v.filter();
+	v.log();
+	v.addZero();
+	v.log();
 }
