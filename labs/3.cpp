@@ -6,73 +6,105 @@ using namespace std;
 
 class Vector {
 	public: 
-		vector<int> list;
+		int arr[100];
+		int userLength = 10;
+		int realLength = this->userLength;
 
-		Vector(int length) 
+		Vector() 
 		{
-			this->create(length);
+			this->fill();
 		}
 
 		void filter() 
 		{
-			vector<int> filtered;
+			int lastInsertedIndex = 0;
 
-			copy_if(this->list.begin(), this->list.end(), back_inserter(filtered), [](int number) -> bool {
-				return number % 4 != 0;
-			});
-
-			this->list = filtered;
+			for(int i = 0; i < this->userLength; i++) 
+			{
+				int el = this->arr[i];
+				
+				if(el % 4 != 0) 
+				{
+					this->arr[lastInsertedIndex++] = el;
+				} else 
+				{
+					this->realLength -= 1;
+				}
+			}
 		}
 
 		void addZero() 
 		{
-			vector<int> transformed;
+			int transformed[100];
+			int lastInsertedIndex = 0;
+			int addedLength = 0;
 
-			for(int i = 0; i < this->list.size(); i++) {
-				transformed.push_back(this->list[i]);
+			for(int i = 0; i < this->realLength; i++, lastInsertedIndex++) 
+			{
+				int el = this->arr[i];
+				transformed[lastInsertedIndex] = el;
 
-				if(i == 0 || i % 2 == 1) {
-					transformed.push_back(0);
+				if(i == 0 || i % 2 == 1) 
+				{
+					transformed[++lastInsertedIndex] = 0;
+					addedLength++;
 				}
 			}
 
-			this->list = transformed;
+			this->realLength += addedLength;
+
+			for(int i = 0; i < this->realLength; i++) 
+			{
+				int el = transformed[i];
+				this->arr[i] = el;
+			}
 		}
 
 		void log()
 		{
-			for(int i = 0; i < this->list.size(); i++) {
-				cout << "Element: " << this->list[i] << "\t" << endl;
+			for(int i = 0; i < this->realLength; i++) 
+			{
+				cout << this->arr[i] << "\t";
 			}
 
-			this->logDivider();
+			cout << endl;
 		}
 
 	private:
-		int initialLength;
 
-		void logDivider() {
-			cout << "================" << endl;
-		}
-
-		void create(int length) 
+		void fill() 
 		{
-    		vector<int> numbers(length);
-
-			for(int i = 0; i < length; i++) {
+			for(int i = 0; i < this->userLength; i++) 
+			{
 				int randomNumber = rand() % 11;
-				numbers[i] = randomNumber;
+				this->arr[i] = randomNumber;
 			}
-
-			this->list = numbers;
 		}
 };
 
+// int* insertX(int n, int arr[],
+//              int x, int pos)
+// {
+//     int i;
+  
+//     // increase the size by 1
+//     n++;
+  
+//     // shift elements forward
+//     for (i = n; i >= pos; i--)
+//         arr[i] = arr[i - 1];
+  
+//     // insert x at pos
+//     arr[pos - 1] = x;
+  
+//     return arr;
+// }
+
 int main() {
-	Vector v(10);
-	v.log();
-	v.filter();
-	v.log();
-	v.addZero();
-	v.log();
+   Vector v;
+   v.log();
+   v.filter();
+   v.log();
+   v.addZero();
+   v.log();
 }
