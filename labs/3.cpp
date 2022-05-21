@@ -4,14 +4,18 @@
 
 using namespace std;
 
-class Vector {
-	public: 
-		int arr[100];
-		int userLength = 10;
-		int realLength = this->userLength;
+const int LENGTH = 100;
 
-		Vector() 
+class Array {
+	public: 
+		int arr[LENGTH];
+		int userLength;
+		int realLength;
+
+		Array(int userLength) 
 		{
+			this->userLength = userLength;
+			this->realLength = userLength;
 			this->fill();
 		}
 
@@ -82,29 +86,17 @@ class Vector {
 		}
 };
 
-// int* insertX(int n, int arr[],
-//              int x, int pos)
-// {
-//     int i;
-  
-//     // increase the size by 1
-//     n++;
-  
-//     // shift elements forward
-//     for (i = n; i >= pos; i--)
-//         arr[i] = arr[i - 1];
-  
-//     // insert x at pos
-//     arr[pos - 1] = x;
-  
-//     return arr;
-// }
-
 int main() {
-   Vector v;
-   v.log();
-   v.filter();
-   v.log();
-   v.addZero();
-   v.log();
+	int userLength;
+
+	cout << "Введите длину массива, не больше - " << LENGTH << endl;
+
+	cin >> userLength;
+
+   	Array v(userLength);
+   	v.log();
+   	v.filter();
+   	v.log();
+   	v.addZero();
+   	v.log();
 }
