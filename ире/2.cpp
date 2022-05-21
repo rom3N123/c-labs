@@ -16,9 +16,9 @@ int main()
 
 	for (int n = 1; ; n++)
 	{
-		a *= pow(4, n) * factorial(n)
-					   / 
-				   factorial(4 * n);
+		a *= factorial(n)
+				 / 
+			  pow(n, n);
 
 		if (abs(a) < eps) {
 			break;
