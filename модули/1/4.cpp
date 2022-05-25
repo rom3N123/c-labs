@@ -39,11 +39,12 @@ class Area {
 
 int main() 
 {
+	int a, b;
+
+	cout << "Введите координаты: a, b" << endl;
+	cin >> a >> b;
+
 	Area area;
 	
-	bool isInArea = area.isInArea(1, -1);
-	cout << isInArea << endl;
-
-	bool isNotInArea = area.isInArea(0, 0);
-	cout << isNotInArea << endl;
+	cout << area.isInArea(a, b) << endl;
 }

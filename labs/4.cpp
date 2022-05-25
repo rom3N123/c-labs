@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include <tuple>
 
 using namespace std;
@@ -29,33 +28,6 @@ int** createDeepArray(int rows, int cols) {
 
 	return arr;
 }
-
-// tuple<int**, int> filterDeepArray(int **arr, int rows, int cols) {
-// 	int **newArr = new int*;
-// 	int resultCols = 0;
-
-// 	for(int row = 0; row < rows; row++) {
-// 		newArr[row] = new int;
-// 		int rowLength = 0;
-// 		for(int col = 0; col < cols; col++) {
-// 			if(col % 2 != 0) {
-// 				newArr[row][rowLength] = arr[row][col];
-// 				rowLength++;
-// 			}
-// 		}
-
-// 		resultCols = rowLength + 1;
-// 	}
-
-// 	for(int i = 0; i < rows; i++) {
-// 		for(int j = 0; j < cols; j++) {
-// 			cout << newArr[i][j] << "\t";
-// 		}
-// 		cout << endl;
-// 	}
-
-// 	return { newArr , resultCols};
-// }
 
 tuple<int*, int> filterArray(int arr[], int length) {
 	int *filtered = new int;

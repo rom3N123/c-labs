@@ -7,10 +7,10 @@ double calcFormula(double a, double b);
 float calcFormula(float a, float b);
 
 double calcFormula(double a, double b) {
-	return (pow(a - b, 3) - (pow(a, 3) - 3 * pow(a, 2) * b)) / pow(b, 3) - (3 * a * pow(b, 2));
+	return (pow(a - b, 3) - (pow(a, 3) - 3 * pow(a, 2) * b)) / (pow(b, 3) - (3 * a * pow(b, 2)));
 }
 float calcFormula(float a, float b) {
-	return (pow(a - b, 3) - (pow(a, 3) - 3 * pow(a, 2) * b)) / pow(b, 3) - (3 * a * pow(b, 2));
+	return (pow(a - b, 3) - (pow(a, 3) - 3 * pow(a, 2) * b)) / (pow(b, 3) - (3 * a * pow(b, 2)));
 }
 
 int main() 
@@ -23,7 +23,7 @@ int main()
 	float floatB = 0.0001;
 	float floatResult = calcFormula(floatA, floatB);
 
-	cout << doubleResult << endl;
-	cout << floatResult << endl;
+	cout << "Double: " << doubleResult << endl;
+	cout << "Float: " <<  floatResult << endl;
 }
 
