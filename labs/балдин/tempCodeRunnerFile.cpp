@@ -1,2 +1,10 @@
-	// int *transformedArr = deleteItem(arr, realLength, 1);
-   	// log(transformedArr, realLength - 1);
+	// int lastInsertedIndex = 0;
+	// for(int r = 0; r < rows; r++) 
+	// {
+	// 	if(r == maxRowIndex) 
+	// 	{
+	// 		continue;
+	// 	}
+
+	// 	arr[lastInsertedIndex++] = arr[r];
+	// }

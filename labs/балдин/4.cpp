@@ -75,21 +75,38 @@ void logTwoDimensionalArray(int rows, int cols, int **arr) {
 	logDivider();
 }
 
-int** addRow(int rows, int cols, int **arr, int K) {
+int** deleteRowWithMaxValue(int rows, int cols, int **arr) {
 	int **newArr = new int* [rows - 1];
+	int maxValue = 0;
+	int maxRowIndex = 0;
 
-	int lastRow = 0;
 	for(int r = 0; r < rows; r++) 
 	{
-		if(r == K) {
-			continue;
-		}
-		int *row = arr[r > K ? lastRow + 1 : lastRow];	
+		int* row = arr[r];
+		for (int c = 0; c < cols; c++) 
+		{
+			int el = row[c];
 
-		newArr[lastRow++] = row;
+			if(el > maxValue) 
+			{
+				maxValue = el;
+				maxRowIndex = r;
+			}
+		}
 	}
 
-	return newArr;
+	int lastInsertedIndex = 0;
+	for(int r = 0; r < rows; r++) 
+	{
+		if(r == maxRowIndex) 
+		{
+			continue;
+		}
+
+		arr[lastInsertedIndex++] = arr[r];
+	}
+
+	arr = newArr;
 }
 
 int two() 
@@ -98,8 +115,9 @@ int two()
 	int r = 5, c = 5;
 	int **arr = createTwoDimensionalArray(r, c);
 	logTwoDimensionalArray(r, c, arr);
-	int **transformedArr = addRow(r, c, arr, 1);
-	logTwoDimensionalArray(r - 1, c, transformedArr);
+	deleteRowWithMaxValue(r, c, arr);
+	logTwoDimensionalArray(r - 1, c, arr);
+	delete[] arr;
 	return 0;
 }
 
